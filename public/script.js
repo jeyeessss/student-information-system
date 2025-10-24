@@ -1,6 +1,10 @@
-// script.js - SIMS frontend
+// script.js - SIMS frontend (Render-ready)
 
-const API_BASE = 'http://localhost:3000/students';
+// Automatically detect backend URL (works for both local and Render)
+const API_BASE =
+  window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:3000/students'
+    : 'https://student-information-system-efin.onrender.com/students';
 
 // Elements
 const form = document.getElementById('studentForm');
@@ -57,7 +61,7 @@ async function loadAndRender() {
     renderStudents(students);
   } catch (err) {
     console.error(err);
-    alert('Network error: could not load students. Is the server running at http://localhost:3000 ?');
+    alert(`Network error: could not load students.\n\nServer URL: ${API_BASE}`);
   }
 }
 
@@ -102,12 +106,11 @@ form.addEventListener('submit', async (e) => {
       return;
     }
 
-    // success
     await loadAndRender();
     form.reset();
   } catch (err) {
     console.error(err);
-    alert('Network error: could not add student.');
+    alert(`Network error: could not add student.\n\nServer URL: ${API_BASE}`);
   }
 });
 
@@ -134,7 +137,7 @@ studentsTbody.addEventListener('click', async (e) => {
     await loadAndRender();
   } catch (err) {
     console.error(err);
-    alert('Network error: could not delete student.');
+    alert(`Network error: could not delete student.\n\nServer URL: ${API_BASE}`);
   }
 });
 
@@ -175,6 +178,5 @@ filterFemale.addEventListener('click', async () => {
 
 showAllBtn.addEventListener('click', loadAndRender);
 
-// start
+// Start app
 loadAndRender();
-  
