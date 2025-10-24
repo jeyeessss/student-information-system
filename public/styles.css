@@ -1,3 +1,27 @@
 body { background: #f7f9fc; }
 .card { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 .table td, .table th { vertical-align: middle; }
+
+/* Make all input boxes look like the Student ID box */
+input.form-control,
+select.form-select {
+  border: 2px solid #0d6efd; /* Bootstrap blue border */
+  border-radius: 6px;
+  background-color: #f8f9ff; /* very light blue background */
+  color: #212529;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Highlight effect when the user clicks or types */
+input.form-control:focus,
+select.form-select:focus {
+  border-color: #0b5ed7; /* deeper blue when focused */
+  background-color: #ffffff; /* turn pure white when active */
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.4);
+  outline: none;
+}
+label.form-label {
+  font-weight: 600;
+  color: #0d6efd; /* blue labels */
+}
